@@ -99,7 +99,7 @@ def main():
         start_time = time.time()
         mergeSort(arr,0,n-1)
         print("--- %s seconds ___" % (time.time() - start_time))
-        arr.clear
+        arr.clear()
     avg_time = (time.time() - start_time) / 10
     print('Average runtime for ' + str(PARITION_SIZE_CUTOFF) + ' partitions is: ' + str(avg_time) + ' seconds')
 
