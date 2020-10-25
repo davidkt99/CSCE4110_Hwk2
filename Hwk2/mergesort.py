@@ -101,7 +101,7 @@ def main():
         print("--- %s seconds ___" % (time.time() - start_time))
         arr.clear
     avg_time = (time.time() - start_time) / 10
-    print('Average runtime for ' + str(PARITION_SIZE_CUTOFF) + 'partitions is: ' + str(avg_time))
+    print('Average runtime for ' + str(PARITION_SIZE_CUTOFF) + ' partitions is: ' + str(avg_time) + ' seconds')
 
 # Run the merge - insertion sort
 main()
