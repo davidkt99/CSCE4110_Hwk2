@@ -4,6 +4,9 @@ import time
 
 sys.setrecursionlimit(10000000)
 
+
+PARITION_SIZE_CUTOFF = 1000
+
 # Python program for implementation of MergeSort from https://www.geeksforgeeks.org/python-program-for-merge-sort/ 
   
 # Merges two subarrays of arr[]. 
@@ -23,12 +26,17 @@ def merge(arr, l, m, r):
   
     for j in range(0 , n2): 
         R[j] = arr[m + 1 + j] 
+
+    # Check if the partition size is greater than the specified cutoff
+    if len(L) > PARITION_SIZE_CUTOFF:
+        insertionSort(L)
+        insertionSort(R)
   
     # Merge the temp arrays back into arr[l..r] 
     i = 0     # Initial index of first subarray 
     j = 0     # Initial index of second subarray 
     k = l     # Initial index of merged subarray 
-  
+
     while i < n1 and j < n2 : 
         if L[i] <= R[j]: 
             arr[k] = L[i] 
@@ -56,25 +64,47 @@ def merge(arr, l, m, r):
 # sub-array of arr to be sorted 
 def mergeSort(arr,l,r): 
     if l < r: 
-  
         # Same as (l+r)//2, but avoids overflow for 
         # large l and h 
-        m = (l+(r-1))//2
+        m = (l+(r-1)) // 2
   
         # Sort first and second halves 
         mergeSort(arr, l, m) 
         mergeSort(arr, m+1, r) 
         merge(arr, l, m, r) 
+
+# Insertion sort implemention from https://www.tutorialspoint.com/insertion-sort-in-python-program
+def insertionSort(arr):
+   for i in range(1, len(arr)):
+      key = arr[i]
+      # Move elements of arr[0..i-1], that are greater than key to one position ahead of their current position
+      j = i - 1
+      while j >= 0 and key < arr[j] :
+         arr[j + 1] = arr[j]
+         j -= 1
+      arr[j + 1] = key
   
 def main():
     # Driver code to test above 
-    arr = [12, 11, 13, 5, 6, 7] 
+    arr = [] 
+
+    # Read in test data from file 
+    file_name = 'set1.txt'
+    with open(file_name, 'r') as f:
+        for line in f:
+            data = line.split()
+            arr.append(int(data[0]))
+
+    # Length of array 
     n = len(arr) 
   
-    mergeSort(arr,0,n-1) 
-    print ("\n\nSorted array is") 
-    for i in range(n): 
-        print ("%d" %arr[i]), 
+    # Run the sort
+    mergeSort(arr,0,n-1)
+    # insertionSort(arr) 
+    print(arr)
+    print('Array has been sorted.')
 
 # Run the merge - insertion sort
+start_time = time.time()
 main()
+print("--- %s seconds ___" % (time.time() - start_time))
