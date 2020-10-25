@@ -2,9 +2,6 @@ import sys
 import os
 import time
 
-sys.setrecursionlimit(10000000)
-
-
 PARITION_SIZE_CUTOFF = 1000
 
 # Python program for implementation of MergeSort from https://www.geeksforgeeks.org/python-program-for-merge-sort/ 
@@ -28,7 +25,7 @@ def merge(arr, l, m, r):
         R[j] = arr[m + 1 + j] 
 
     # Check if the partition size is greater than the specified cutoff
-    if len(L) > PARITION_SIZE_CUTOFF:
+    if len(L) <= PARITION_SIZE_CUTOFF:
         insertionSort(L)
         insertionSort(R)
   
@@ -87,24 +84,24 @@ def insertionSort(arr):
 def main():
     # Driver code to test above 
     arr = [] 
-
-    # Read in test data from file 
-    file_name = 'set1.txt'
-    with open(file_name, 'r') as f:
-        for line in f:
-            data = line.split()
-            arr.append(int(data[0]))
-
-    # Length of array 
-    n = len(arr) 
+    avg_time = 0
+    for i in range(10):
+        # Read in test data from every test file (make sure test files are in the same directory as code )
+        file_name = ('set' + str(i) + '.txt') # This will equate to 'set1.txt', 'set2.txt', etc. 
+        with open(file_name, 'r') as f:
+            for line in f:
+                data = line.split()
+                arr.append(int(data[0]))
+        # Length of array 
+        n = len(arr) 
   
-    # Run the sort
-    mergeSort(arr,0,n-1)
-    # insertionSort(arr) 
-    print(arr)
-    print('Array has been sorted.')
+        # Run the sort
+        start_time = time.time()
+        mergeSort(arr,0,n-1)
+        print("--- %s seconds ___" % (time.time() - start_time))
+        arr.clear
+    avg_time = (time.time() - start_time) / 10
+    print('Average runtime for ' + str(PARITION_SIZE_CUTOFF) + 'partitions is: ' + str(avg_time))
 
 # Run the merge - insertion sort
-start_time = time.time()
 main()
-print("--- %s seconds ___" % (time.time() - start_time))
