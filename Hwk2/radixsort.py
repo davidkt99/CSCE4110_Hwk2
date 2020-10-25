@@ -56,7 +56,7 @@ def main():
     # Driver code to test above 
     arr = [] 
     avgRunTime = 0
-    for i in range(1):
+    for i in range(10):
         # Read in test data from every test file (make sure test files are in the same directory as code )
         file_name = ('set' + str(i) + '.txt') # This will equate to 'set1.txt', 'set2.txt', etc. 
         with open(file_name, 'r') as f:
