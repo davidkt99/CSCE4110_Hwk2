@@ -124,7 +124,7 @@ def main():
         total_time += (time.time() - start_time)
         arr.clear()
     avg_time = total_time / 10
-    print('Average runtime for timSort is: ' + str(avg_time * 60))
+    print('Average runtime for timSort is: ' + str(avg_time))
 
 # Run the merge - insertion sort
 main()
