@@ -74,5 +74,5 @@ def main():
     avg_time = (time.time() - start_time) / 10.0
     print('Average runtime of all 10 test cases is: ' + str(avgRunTime))
 
-# Run the merge - insertion sort
+# Run sort
 main()
