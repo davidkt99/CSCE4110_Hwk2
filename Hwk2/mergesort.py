@@ -85,6 +85,7 @@ def main():
     # Driver code to test above 
     arr = [] 
     avg_time = 0
+    total_time = 0
     for i in range(10):
         # Read in test data from every test file (make sure test files are in the same directory as code )
         file_name = ('set' + str(i) + '.txt') # This will equate to 'set1.txt', 'set2.txt', etc. 
@@ -99,9 +100,10 @@ def main():
         start_time = time.time()
         mergeSort(arr,0,n-1)
         print("--- %s seconds ___" % (time.time() - start_time))
+        total_time += (time.time() - start_time)
         arr.clear()
-    avg_time = (time.time() - start_time) / 10
-    print('Average runtime for ' + str(PARITION_SIZE_CUTOFF) + ' partitions is: ' + str(avg_time) + ' seconds')
+    avg_time = total_time / 10
+    print('Average runtime for ' + str(PARITION_SIZE_CUTOFF) + ' partitions is: ' + str(avg_time))
 
 # Run the merge - insertion sort
 main()
