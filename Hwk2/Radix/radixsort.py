@@ -72,7 +72,7 @@ def main():
         print("--- %s seconds ___" % (time.time() - start_time))
         total_time += (time.time() - start_time)
         arr.clear()
-    avg_time = total_time / 10.0
+    avg_time = total_time / 10
     print('Average runtime of all 10 test cases is: ' + str(avgRunTime))
 
 # Run sort
